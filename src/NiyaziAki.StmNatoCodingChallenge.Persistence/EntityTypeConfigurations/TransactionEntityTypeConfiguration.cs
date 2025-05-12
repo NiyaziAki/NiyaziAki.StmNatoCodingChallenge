@@ -43,6 +43,17 @@ namespace NiyaziAki.StmNatoCodingChallenge.Persistence.EntityTypeConfigurations
                 nameof(Transaction),
                 "StmNato",
                 tableBuilder => tableBuilder.HasCheckConstraint("CK_Transaction_Amount_NonNegative", "\"Amount\" >= 0"));
+
+            builder.HasIndex(user => user.TransactionType)
+                   .IsUnique(false);
+
+            builder.HasIndex(user => user.CreatedAt)
+                   .IsUnique(false);
+
+            builder.HasOne(transaction => transaction.User)
+                   .WithMany(user => user.Transactions)
+                   .HasForeignKey(transaction => transaction.UserId)
+                   .IsRequired();
         }
     }
 }

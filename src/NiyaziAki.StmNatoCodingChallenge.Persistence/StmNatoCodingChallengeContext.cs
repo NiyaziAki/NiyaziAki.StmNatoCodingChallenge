@@ -40,6 +40,11 @@ namespace NiyaziAki.StmNatoCodingChallenge.Persistence
         public DbSet<Transaction>? Transactions { get; set; }
 
         /// <summary>
+        /// Represents the Users table int the database.
+        /// </summary>
+        public DbSet<User>? Users { get; set; }
+
+        /// <summary>
         /// The connection string.
         /// </summary>
         protected string ConnectionString { get; private set; }

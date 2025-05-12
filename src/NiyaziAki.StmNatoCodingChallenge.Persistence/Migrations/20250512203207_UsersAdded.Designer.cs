@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NiyaziAki.StmNatoCodingChallenge.Persistence;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace NiyaziAki.StmNatoCodingChallenge.Persistence.Migrations
 {
     [DbContext(typeof(StmNatoCodingChallengeContext))]
-    partial class StmNatoCodingChallengeContextModelSnapshot : ModelSnapshot
+    [Migration("20250512203207_UsersAdded")]
+    partial class UsersAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

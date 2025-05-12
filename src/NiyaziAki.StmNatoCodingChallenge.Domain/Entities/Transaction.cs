@@ -60,5 +60,10 @@ namespace NiyaziAki.StmNatoCodingChallenge.Domain.Entities
         /// The date and time of the transaction.
         /// </summary>
         public DateTime CreatedAt { get; set; }
+
+        /// <summary>
+        /// The user of the transaction.
+        /// </summary>
+        public virtual User? User { get; set; }
     }
 }
