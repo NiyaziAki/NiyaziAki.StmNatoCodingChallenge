@@ -43,6 +43,11 @@ namespace NiyaziAki.StmNatoCodingChallenge.Infrastructure
                     Title = "STM NATO Coding Challenge API",
                     Version = "v1",
                     Description = "API documentation for STM NATO Coding Challenge",
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Niyazi Akı",
+                        Email = "niyazi.aki@runicbytes.com",
+                    },
                 });
 
                 string xmlFile = $"NiyaziAki.StmNatoCodingChallenge.Api.xml";

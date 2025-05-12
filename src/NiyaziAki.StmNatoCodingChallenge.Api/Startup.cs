@@ -6,6 +6,7 @@
 
 namespace NiyaziAki.StmNatoCodingChallenge.Api
 {
+    using NiyaziAki.StmNatoCodingChallenge.Application;
     using NiyaziAki.StmNatoCodingChallenge.Infrastructure;
 
     /// <summary>
@@ -40,7 +41,8 @@ namespace NiyaziAki.StmNatoCodingChallenge.Api
         /// <param name="services">The collection of service descriptors.</param>
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddInfrastructure(this.configuration);
+            services.AddApplication()
+                    .AddInfrastructure(this.configuration);
         }
 
         /// <summary>
