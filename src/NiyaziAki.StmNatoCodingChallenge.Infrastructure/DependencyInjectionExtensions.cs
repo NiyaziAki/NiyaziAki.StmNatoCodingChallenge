@@ -26,6 +26,8 @@ namespace NiyaziAki.StmNatoCodingChallenge.Infrastructure
         /// <returns>The updated IServiceCollection with infrastructure services registered.</returns>
         public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
+            services.AddControllers();
+
             DatabaseContextOptions databaseContextOptions = new DatabaseContextOptions();
             IConfigurationSection section = configuration.GetSection(nameof(DatabaseContextOptions));
             section.Bind(databaseContextOptions);
@@ -63,6 +65,13 @@ namespace NiyaziAki.StmNatoCodingChallenge.Infrastructure
             {
                 options.SwaggerEndpoint("/swagger/v1/swagger.json", "STM NATO API v1");
                 options.RoutePrefix = string.Empty;
+            });
+
+            applicationBuilder.UseRouting();
+
+            applicationBuilder.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
             });
 
             return applicationBuilder;
