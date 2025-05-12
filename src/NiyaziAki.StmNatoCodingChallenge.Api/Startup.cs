@@ -6,6 +6,8 @@
 
 namespace NiyaziAki.StmNatoCodingChallenge.Api
 {
+    using NiyaziAki.StmNatoCodingChallenge.Infrastructure;
+
     /// <summary>
     /// Configures the application's services and HTTP request pipeline.
     /// </summary>
@@ -38,6 +40,7 @@ namespace NiyaziAki.StmNatoCodingChallenge.Api
         /// <param name="services">The collection of service descriptors.</param>
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddInfrastructure(this.configuration);
         }
 
         /// <summary>
@@ -47,6 +50,7 @@ namespace NiyaziAki.StmNatoCodingChallenge.Api
         /// <param name="applicationBuilder">An IApplicationBuilder for configuring the middleware pipeline.</param>
         public void Configure(IApplicationBuilder applicationBuilder)
         {
+            applicationBuilder.UseInfrastructure(this.configuration);
         }
     }
 }
