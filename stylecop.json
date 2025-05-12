@@ -1,0 +1,10 @@
+﻿{
+  "$schema": "https://raw.githubusercontent.com/DotNetAnalyzers/StyleCopAnalyzers/master/StyleCop.Analyzers/StyleCop.Analyzers/Settings/stylecop.schema.json",
+  "settings": {
+    "documentationRules": {
+      "companyName": "Niyazi Aki",
+      "copyrightText": "Copyright (c) STM & NATO Coding Challenge - Niyazi Aki - All rights reserved.",
+      "headerDecoration": "************************************************************************"
+    }
+  }
+}
