@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  postgresql-stmnato:
+    image: kartoza/postgis:latest
+    container_name: postgresql-stmnato
+    hostname: postgresql-stmnato
+    environment:
+      POSTGRES_PASSWORD: "N@t0(1949)"
+      POSTGRES_USER: "sa"
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgresql_data:/var/lib/postgresql/data
+    networks:
+      - internal-stmnato
+
+networks:
+  internal-stmnato:
+    driver: bridge
+
+volumes:
+  postgresql_data:
+    driver: local

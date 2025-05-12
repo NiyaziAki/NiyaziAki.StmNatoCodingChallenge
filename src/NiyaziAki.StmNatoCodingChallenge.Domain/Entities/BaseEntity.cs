@@ -12,7 +12,7 @@ namespace NiyaziAki.StmNatoCodingChallenge.Domain.Entities
     /// REpresenta a base entity implementation.
     /// </summary>
     /// <typeparam name="TPrivateKey">The type of the primary key.</typeparam>
-    public class BaseEntity<TPrivateKey> : IBaseEntity<TPrivateKey>
+    public abstract class BaseEntity<TPrivateKey> : IBaseEntity<TPrivateKey>
         where TPrivateKey : struct
     {
         /// <summary>
