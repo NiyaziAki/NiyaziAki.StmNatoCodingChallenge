@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<RunAnalyzersDuringBuild>true</RunAnalyzersDuringBuild>
+		<CodeAnalysisRuleSet>$(SolutionDir)\rules.ruleset</CodeAnalysisRuleSet>
+		<Features>IOperation</Features>
+		<NoWarn></NoWarn>
+		<IsPackable>false</IsPackable>
+		<IsTestProject>true</IsTestProject>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="MediatR" Version="12.5.0" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="8.0.1" />
+		<PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<AdditionalFiles Include="$(SolutionDir)\stylecop.json" Link="stylecop.json" />
+		<AdditionalFiles Include="$(SolutionDir)\rules.ruleset" Link="rules.ruleset" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.6.0" />
+		<PackageReference Include="MSTest.TestAdapter" Version="3.0.4" />
+		<PackageReference Include="MSTest.TestFramework" Version="3.0.4" />
+		<PackageReference Include="Microsoft.Playwright.MSTest" Version="1.27.1" />
+		<PackageReference Include="coverlet.collector" Version="6.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\src\NiyaziAki.StmNatoCodingChallenge.Application\NiyaziAki.StmNatoCodingChallenge.Application.csproj" />
+	  <ProjectReference Include="..\..\src\NiyaziAki.StmNatoCodingChallenge.Domain\NiyaziAki.StmNatoCodingChallenge.Domain.csproj" />
+	  <ProjectReference Include="..\..\src\NiyaziAki.StmNatoCodingChallenge.Infrastructure\NiyaziAki.StmNatoCodingChallenge.Infrastructure.csproj" />
+	  <ProjectReference Include="..\..\src\NiyaziAki.StmNatoCodingChallenge.Persistence\NiyaziAki.StmNatoCodingChallenge.Persistence.csproj" />
+	</ItemGroup>
+
+</Project>

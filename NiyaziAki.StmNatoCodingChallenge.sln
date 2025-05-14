@@ -14,15 +14,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{38D69A73-ED66-4EBD-9D8A-79AF70D18BC5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NiyaziAki.StmNatoCodingChallenge.Domain", "src\NiyaziAki.StmNatoCodingChallenge.Domain\NiyaziAki.StmNatoCodingChallenge.Domain.csproj", "{D95BD875-6262-42B9-9911-0A136EB5EC21}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NiyaziAki.StmNatoCodingChallenge.Domain", "src\NiyaziAki.StmNatoCodingChallenge.Domain\NiyaziAki.StmNatoCodingChallenge.Domain.csproj", "{D95BD875-6262-42B9-9911-0A136EB5EC21}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NiyaziAki.StmNatoCodingChallenge.Persistence", "src\NiyaziAki.StmNatoCodingChallenge.Persistence\NiyaziAki.StmNatoCodingChallenge.Persistence.csproj", "{CC3A1A00-BB0B-4CA8-9C44-386FD5BCF0FF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NiyaziAki.StmNatoCodingChallenge.Persistence", "src\NiyaziAki.StmNatoCodingChallenge.Persistence\NiyaziAki.StmNatoCodingChallenge.Persistence.csproj", "{CC3A1A00-BB0B-4CA8-9C44-386FD5BCF0FF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NiyaziAki.StmNatoCodingChallenge.Application", "src\NiyaziAki.StmNatoCodingChallenge.Application\NiyaziAki.StmNatoCodingChallenge.Application.csproj", "{6A6FCB77-A4E1-410A-AE4A-0E62C42B4169}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NiyaziAki.StmNatoCodingChallenge.Application", "src\NiyaziAki.StmNatoCodingChallenge.Application\NiyaziAki.StmNatoCodingChallenge.Application.csproj", "{6A6FCB77-A4E1-410A-AE4A-0E62C42B4169}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NiyaziAki.StmNatoCodingChallenge.Infrastructure", "src\NiyaziAki.StmNatoCodingChallenge.Infrastructure\NiyaziAki.StmNatoCodingChallenge.Infrastructure.csproj", "{AD329269-57A9-42A3-89BE-7641683D031B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NiyaziAki.StmNatoCodingChallenge.Infrastructure", "src\NiyaziAki.StmNatoCodingChallenge.Infrastructure\NiyaziAki.StmNatoCodingChallenge.Infrastructure.csproj", "{AD329269-57A9-42A3-89BE-7641683D031B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NiyaziAki.StmNatoCodingChallenge.Api", "src\NiyaziAki.StmNatoCodingChallenge.Api\NiyaziAki.StmNatoCodingChallenge.Api.csproj", "{F8A49CEE-EE21-42AC-BBF5-3442D4E248E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NiyaziAki.StmNatoCodingChallenge.Api", "src\NiyaziAki.StmNatoCodingChallenge.Api\NiyaziAki.StmNatoCodingChallenge.Api.csproj", "{F8A49CEE-EE21-42AC-BBF5-3442D4E248E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{7148CE0F-6B48-4AAE-B057-DA537F5938D3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NiyaziAki.StmNatoCodingChallenge.UnitTests", "tests\NiyaziAki.StmNatoCodingChallenge.UnitTests\NiyaziAki.StmNatoCodingChallenge.UnitTests.csproj", "{8DCD9771-6641-41E6-8FFC-A35223002D55}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -50,6 +54,10 @@ Global
 		{F8A49CEE-EE21-42AC-BBF5-3442D4E248E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F8A49CEE-EE21-42AC-BBF5-3442D4E248E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F8A49CEE-EE21-42AC-BBF5-3442D4E248E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DCD9771-6641-41E6-8FFC-A35223002D55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DCD9771-6641-41E6-8FFC-A35223002D55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DCD9771-6641-41E6-8FFC-A35223002D55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DCD9771-6641-41E6-8FFC-A35223002D55}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -60,6 +68,7 @@ Global
 		{6A6FCB77-A4E1-410A-AE4A-0E62C42B4169} = {38D69A73-ED66-4EBD-9D8A-79AF70D18BC5}
 		{AD329269-57A9-42A3-89BE-7641683D031B} = {38D69A73-ED66-4EBD-9D8A-79AF70D18BC5}
 		{F8A49CEE-EE21-42AC-BBF5-3442D4E248E8} = {38D69A73-ED66-4EBD-9D8A-79AF70D18BC5}
+		{8DCD9771-6641-41E6-8FFC-A35223002D55} = {7148CE0F-6B48-4AAE-B057-DA537F5938D3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CE22C404-8A6A-4B1C-9FD8-F7B53BB8BC45}
