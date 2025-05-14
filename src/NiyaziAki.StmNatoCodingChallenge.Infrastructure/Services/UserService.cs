@@ -11,22 +11,22 @@ namespace NiyaziAki.StmNatoCodingChallenge.Infrastructure.Services
     using Microsoft.EntityFrameworkCore;
     using NiyaziAki.StmNatoCodingChallenge.Application.Services;
     using NiyaziAki.StmNatoCodingChallenge.Domain.Entities;
-    using NiyaziAki.StmNatoCodingChallenge.Persistence;
+    using NiyaziAki.StmNatoCodingChallenge.Persistence.Interfaces;
 
     /// <summary>
     /// Service for managing user operations such as creating, deleting, retrieving, and updating users.
     /// </summary>
     public class UserService : IUserService
     {
-        private readonly StmNatoCodingChallengeContext databaseContext;
+        private readonly IRepository<User, string> userRepository;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="UserService"/> class.
         /// </summary>
-        /// <param name="databaseContext">The database context used to interact with the database.</param>
-        public UserService(StmNatoCodingChallengeContext databaseContext)
+        /// <param name="unitOfWork">The unit of work to manage database transactions.</param>
+        public UserService(IUnitOfWork unitOfWork)
         {
-            this.databaseContext = databaseContext;
+            this.userRepository = unitOfWork.GetRepository<User, string>();
         }
 
         /// <summary>
@@ -37,9 +37,7 @@ namespace NiyaziAki.StmNatoCodingChallenge.Infrastructure.Services
         public async Task<string> CreateNewUser(string fullName)
         {
             User user = new User(Guid.NewGuid().ToString(), fullName);
-            this.databaseContext.Users.Add(user);
-            await this.databaseContext.SaveChangesAsync();
-            return user.Id;
+            return await this.userRepository.AddAsync(user);
         }
 
         /// <summary>
@@ -49,8 +47,7 @@ namespace NiyaziAki.StmNatoCodingChallenge.Infrastructure.Services
         /// <returns>A task representing the asynchronous operation.</returns>
         public async Task Delete(User user)
         {
-            this.databaseContext.Users.Remove(user);
-            await this.databaseContext.SaveChangesAsync();
+            await this.userRepository.DeleteAsync(user);
         }
 
         /// <summary>
@@ -60,7 +57,7 @@ namespace NiyaziAki.StmNatoCodingChallenge.Infrastructure.Services
         /// <returns>The user with the specified ID, or null if not found.</returns>
         public async Task<User?> Get(string id)
         {
-            return await this.databaseContext.Users.Include(user => user.Transactions).FirstOrDefaultAsync(user => user.Id == id);
+            return await this.userRepository.GetByIdAsync(id, users => users.Include(user => user.Transactions));
         }
 
         /// <summary>
@@ -70,8 +67,7 @@ namespace NiyaziAki.StmNatoCodingChallenge.Infrastructure.Services
         /// <returns>A task representing the asynchronous operation.</returns>
         public async Task Update(User user)
         {
-            this.databaseContext.Users.Update(user);
-            await this.databaseContext.SaveChangesAsync();
+            await this.userRepository.UpdateAsync(user);
         }
     }
 }

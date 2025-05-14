@@ -16,6 +16,7 @@ namespace NiyaziAki.StmNatoCodingChallenge.Infrastructure
     using NiyaziAki.StmNatoCodingChallenge.Infrastructure.Middlewares;
     using NiyaziAki.StmNatoCodingChallenge.Infrastructure.Services;
     using NiyaziAki.StmNatoCodingChallenge.Persistence;
+    using NiyaziAki.StmNatoCodingChallenge.Persistence.Interfaces;
     using Npgsql;
 
     /// <summary>
@@ -45,6 +46,8 @@ namespace NiyaziAki.StmNatoCodingChallenge.Infrastructure
 
             services.AddScoped<ITransactionService, TransactionService>()
                     .AddScoped<IUserService, UserService>();
+
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddSwaggerGen(options =>
             {

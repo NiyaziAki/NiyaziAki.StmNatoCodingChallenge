@@ -8,28 +8,26 @@ namespace NiyaziAki.StmNatoCodingChallenge.Infrastructure.Services
 {
     using System;
     using System.Collections.Generic;
-    using System.Threading;
     using System.Threading.Tasks;
-    using Microsoft.EntityFrameworkCore;
     using NiyaziAki.StmNatoCodingChallenge.Application.Services;
     using NiyaziAki.StmNatoCodingChallenge.Domain.Entities;
     using NiyaziAki.StmNatoCodingChallenge.Domain.Enums;
-    using NiyaziAki.StmNatoCodingChallenge.Persistence;
+    using NiyaziAki.StmNatoCodingChallenge.Persistence.Interfaces;
 
     /// <summary>
     /// Service for handling operations related to transactions, such as creating, deleting, retrieving, and updating transactions.
     /// </summary>
     public class TransactionService : ITransactionService
     {
-        private readonly StmNatoCodingChallengeContext databaseContext;
+        private readonly IRepository<Transaction, int> transactionRepository;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TransactionService"/> class.
         /// </summary>
-        /// <param name="databaseContext">The database context used to interact with the database.</param>
-        public TransactionService(StmNatoCodingChallengeContext databaseContext)
+        /// <param name="unitOfWork">The unit of work to manage database transactions.</param>
+        public TransactionService(IUnitOfWork unitOfWork)
         {
-            this.databaseContext = databaseContext;
+            this.transactionRepository = unitOfWork.GetRepository<Transaction, int>();
         }
 
         /// <summary>
@@ -43,9 +41,7 @@ namespace NiyaziAki.StmNatoCodingChallenge.Infrastructure.Services
         public async Task<int> CreateNewTransaction(string userId, decimal amount, TransactionType transactionType, DateTime createdAt)
         {
             Transaction transaction = new Transaction(userId, amount, transactionType, createdAt);
-            this.databaseContext.Transactions.Add(transaction);
-            await this.databaseContext.SaveChangesAsync();
-            return transaction.Id;
+            return await this.transactionRepository.AddAsync(transaction);
         }
 
         /// <summary>
@@ -55,8 +51,7 @@ namespace NiyaziAki.StmNatoCodingChallenge.Infrastructure.Services
         /// <returns>A task representing the asynchronous operation.</returns>
         public async Task Delete(Transaction transaction)
         {
-            this.databaseContext.Transactions.Remove(transaction);
-            await this.databaseContext.SaveChangesAsync();
+            await this.transactionRepository.DeleteAsync(transaction);
         }
 
         /// <summary>
@@ -66,8 +61,7 @@ namespace NiyaziAki.StmNatoCodingChallenge.Infrastructure.Services
         /// <returns>A task representing the asynchronous operation.</returns>
         public async Task Delete(ICollection<Transaction> transactions)
         {
-            this.databaseContext.Transactions.RemoveRange(transactions);
-            await this.databaseContext.SaveChangesAsync();
+            await this.transactionRepository.DeleteRangeAsync(transactions);
         }
 
         /// <summary>
@@ -77,8 +71,7 @@ namespace NiyaziAki.StmNatoCodingChallenge.Infrastructure.Services
         /// <returns>The transaction with the specified ID, or null if not found.</returns>
         public async Task<Transaction?> Get(int id)
         {
-            Transaction? transaction = await this.databaseContext.Transactions.FirstOrDefaultAsync(transaction => transaction.Id == id);
-            return transaction;
+            return await this.transactionRepository.GetByIdAsync(id);
         }
 
         /// <summary>
@@ -88,8 +81,7 @@ namespace NiyaziAki.StmNatoCodingChallenge.Infrastructure.Services
         /// <returns>A task representing the asynchronous operation.</returns>
         public async Task Update(Transaction transaction)
         {
-            this.databaseContext.Transactions.Update(transaction);
-            await this.databaseContext.SaveChangesAsync();
+            await this.transactionRepository.UpdateAsync(transaction);
         }
     }
 }

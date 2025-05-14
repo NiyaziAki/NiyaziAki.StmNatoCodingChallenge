@@ -9,9 +9,8 @@ namespace NiyaziAki.StmNatoCodingChallenge.Infrastructure.Middlewares
     using System;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Http;
-    using Microsoft.EntityFrameworkCore.Storage;
     using NiyaziAki.StmNatoCodingChallenge.Infrastructure.Middlewares.Attributes;
-    using NiyaziAki.StmNatoCodingChallenge.Persistence;
+    using NiyaziAki.StmNatoCodingChallenge.Persistence.Interfaces;
 
     /// <summary>
     /// Middleware responsible for managing database transactions during HTTP requests.
@@ -19,15 +18,15 @@ namespace NiyaziAki.StmNatoCodingChallenge.Infrastructure.Middlewares
     /// </summary>
     public class TransactionMiddleware : IMiddleware
     {
-        private readonly StmNatoCodingChallengeContext databaseContext;
+        private readonly IUnitOfWork unitOfWork;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TransactionMiddleware"/> class.
         /// </summary>
-        /// <param name="databaseContext">The database context used to manage transactions.</param>
-        public TransactionMiddleware(StmNatoCodingChallengeContext databaseContext)
+        /// <param name="unitOfWork">The unit of work to manage database transactions.</param>
+        public TransactionMiddleware(IUnitOfWork unitOfWork)
         {
-            this.databaseContext = databaseContext;
+            this.unitOfWork = unitOfWork;
         }
 
         /// <summary>
@@ -50,17 +49,17 @@ namespace NiyaziAki.StmNatoCodingChallenge.Infrastructure.Middlewares
                 return;
             }
 
-            await using IDbContextTransaction transaction = await this.databaseContext.Database.BeginTransactionAsync();
+            await this.unitOfWork.BeginTransactionAsync();
 
             try
             {
                 await next(context);
-                await this.databaseContext.SaveChangesAsync();
-                await transaction.CommitAsync();
+                await this.unitOfWork.SaveChangesAsync();
+                await this.unitOfWork.CommitAsync();
             }
             catch (Exception)
             {
-                await transaction.RollbackAsync();
+                await this.unitOfWork.RollbackAsync();
                 throw;
             }
         }

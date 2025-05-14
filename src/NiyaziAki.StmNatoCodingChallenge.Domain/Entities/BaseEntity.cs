@@ -9,7 +9,7 @@ namespace NiyaziAki.StmNatoCodingChallenge.Domain.Entities
     using NiyaziAki.StmNatoCodingChallenge.Domain.Interfaces;
 
     /// <summary>
-    /// REpresenta a base entity implementation.
+    /// Representa a base entity implementation.
     /// </summary>
     /// <typeparam name="TPrivateKey">The type of the primary key.</typeparam>
     public abstract class BaseEntity<TPrivateKey> : IBaseEntity<TPrivateKey>

@@ -6,10 +6,12 @@
 
 namespace NiyaziAki.StmNatoCodingChallenge.Domain.Entities
 {
+    using NiyaziAki.StmNatoCodingChallenge.Domain.Interfaces;
+
     /// <summary>
     /// Represents a basic user for the coding challenge.
     /// </summary>
-    public class User
+    public class User : IEntityWithPrimaryKey<string>
     {
         /// <summary>
         /// Creates an instance of <see cref="User"/>.

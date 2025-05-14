@@ -6,19 +6,12 @@
 
 namespace NiyaziAki.StmNatoCodingChallenge.Domain.Interfaces
 {
-    using System.ComponentModel.DataAnnotations.Schema;
-
     /// <summary>
     /// Represetns a base entity contract.
     /// </summary>
     /// <typeparam name="TPrivateKey">The type of the primary key.</typeparam>
-    public interface IBaseEntity<TPrivateKey>
+    public interface IBaseEntity<TPrivateKey> : IEntityWithPrimaryKey<TPrivateKey>
         where TPrivateKey : struct ////int, long, guid
     {
-        /// <summary>
-        /// Primary key.
-        /// </summary>
-        [Column(Order = 0)]
-        public TPrivateKey Id { get; set; }
     }
 }
