@@ -6,6 +6,7 @@
 
 namespace NiyaziAki.StmNatoCodingChallenge.Application
 {
+    using System.Reflection;
     using Microsoft.Extensions.DependencyInjection;
 
     /// <summary>
@@ -22,6 +23,7 @@ namespace NiyaziAki.StmNatoCodingChallenge.Application
         {
             Type type = typeof(ApplicationAssembly);
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(type.Assembly));
+            services.AddAutoMapper(type.Assembly);
 
             return services;
         }

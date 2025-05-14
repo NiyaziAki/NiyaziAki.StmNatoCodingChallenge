@@ -29,6 +29,13 @@ namespace NiyaziAki.StmNatoCodingChallenge.Domain.Entities
         }
 
         /// <summary>
+        /// Parameterless constructor added for mappings used in EF core or dapper.
+        /// </summary>
+        private Transaction()
+        {
+        }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="Transaction"/> class with the specified user ID, amount, transaction type, and creation date.
         /// </summary>
         /// <param name="userId">The primary key of the user associated with the transaction.</param>

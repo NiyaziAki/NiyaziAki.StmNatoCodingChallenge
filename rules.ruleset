@@ -608,7 +608,6 @@
   </Rules>
   <Rules AnalyzerId="StyleCop.Analyzers" RuleNamespace="StyleCop.Analyzers">
     <Rule Id="SA1124" Action="None" />
-    <Rule Id="SA1305" Action="Warning" />
     <Rule Id="SA1412" Action="Warning" />
     <Rule Id="SA1623" Action="None" />
     <Rule Id="SA1642" Action="None" />

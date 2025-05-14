@@ -12,7 +12,10 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<PackageReference Include="AutoMapper" Version="14.0.0" />
+		<PackageReference Include="Dapper" Version="2.1.66" />
 		<PackageReference Include="MediatR" Version="12.5.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.3.0" />
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.2" />
 		<PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
 			<PrivateAssets>all</PrivateAssets>
@@ -24,6 +27,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\NiyaziAki.StmNatoCodingChallenge.Domain\NiyaziAki.StmNatoCodingChallenge.Domain.csproj" />
+		<ProjectReference Include="..\NiyaziAki.StmNatoCodingChallenge.Persistence\NiyaziAki.StmNatoCodingChallenge.Persistence.csproj" />
 	</ItemGroup>
 
 </Project>

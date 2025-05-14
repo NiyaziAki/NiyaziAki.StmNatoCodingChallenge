@@ -7,11 +7,16 @@
 namespace NiyaziAki.StmNatoCodingChallenge.Infrastructure
 {
     using System;
+    using System.Data;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.OpenApi.Models;
+    using NiyaziAki.StmNatoCodingChallenge.Application.Services;
+    using NiyaziAki.StmNatoCodingChallenge.Infrastructure.Middlewares;
+    using NiyaziAki.StmNatoCodingChallenge.Infrastructure.Services;
     using NiyaziAki.StmNatoCodingChallenge.Persistence;
+    using Npgsql;
 
     /// <summary>
     /// Contains extension methods for configuring the infrastructure layer of the application.
@@ -26,6 +31,7 @@ namespace NiyaziAki.StmNatoCodingChallenge.Infrastructure
         /// <returns>The updated IServiceCollection with infrastructure services registered.</returns>
         public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
+            services.AddHttpContextAccessor();
             services.AddControllers();
 
             DatabaseContextOptions databaseContextOptions = new DatabaseContextOptions();
@@ -35,6 +41,10 @@ namespace NiyaziAki.StmNatoCodingChallenge.Infrastructure
             services.AddSingleton<DatabaseContextOptions>(databaseContextOptions);
 
             services.AddScoped<StmNatoCodingChallengeContext>();
+            services.AddTransient<IDbConnection>(servicePovider => new NpgsqlConnection($"Host={databaseContextOptions.Server};Port={databaseContextOptions.Port};Username={databaseContextOptions.User};Password={databaseContextOptions.Password};Database={databaseContextOptions.Database}"));
+
+            services.AddScoped<ITransactionService, TransactionService>()
+                    .AddScoped<IUserService, UserService>();
 
             services.AddSwaggerGen(options =>
             {
@@ -73,6 +83,8 @@ namespace NiyaziAki.StmNatoCodingChallenge.Infrastructure
             });
 
             applicationBuilder.UseRouting();
+
+            applicationBuilder.UseMiddleware<TransactionMiddleware>();
 
             applicationBuilder.UseEndpoints(endpoints =>
             {
